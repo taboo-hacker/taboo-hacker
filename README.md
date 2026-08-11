@@ -91,7 +91,7 @@
 | 项目 | 简介 & 亮点 |
 | :--- | :--- |
 | [**qzct-login**](https://github.com/taboo-hacker/qzct-login) | 专为衢职院定制，解决每次都要手动登录校园网的痛点。亮点：PyQt5 桌面应用、多线程并发、通过 Claude Code + DeepSeek V4 Pro 进行深度代码审查与重构。 |
-| [**endfield-material-calculator**](https://github.com/taboo-hacker/endfield-material-calculator) | 明日方舟：终末地 材料计算器。亮点：纯前端实现，Vue.js + Tailwind CSS，响应式界面设计。 |
+| [**endfield-material-calculator**](https://github.com/taboo-hacker/endfield-material-calculator) | 明日方舟：终末地 材料计算器。亮点：纯前端实现，HTML5 + Tailwind CSS + Chart.js，响应式界面设计。 |
 
 ---
 
