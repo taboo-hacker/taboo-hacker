@@ -36,13 +36,13 @@ jobs:
       - name: Prepare directories
         run: mkdir -p assets
 
-      - name: Generate stats card
-        uses: stats-organization/github-readme-stats-action@v1
-        with:
-          card: stats
-          options: username=taboo-hacker&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=22D3EE&icon_color=A855F7&text_color=CBD5E1&ring_color=7C3AED&count_private=true&include_all_commits=true&rank_icon=percentile
-          path: assets/stats.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Generate stats card (custom, REST-only)
+        # 不用 github-readme-stats：Actions 里的安装令牌读不到用户级 GraphQL 数据，
+        # 那张卡片会直接变成 "Something went wrong"。这里用公开 REST 接口自己画。
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USERNAME: ${{ github.repository_owner }}
+        run: python3 tools/make_stats_svg.py
 
       - name: Generate top languages card
         uses: stats-organization/github-readme-stats-action@v1
