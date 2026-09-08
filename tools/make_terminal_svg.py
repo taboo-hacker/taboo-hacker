@@ -20,7 +20,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 FONT = ("'JetBrains Mono','Fira Code',ui-monospace,SFMono-Regular,Menlo,"
         "Consolas,'Microsoft YaHei','PingFang SC','Noto Sans SC',monospace")
 
-PANEL_W, PANEL_H = 660, 434
+PANEL_W, PANEL_H = 620, 434
 LEFT = 28
 LINE_H = 26
 FIRST_Y = 116

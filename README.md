@@ -25,10 +25,10 @@
 
 <table width="100%">
 <tr>
-<td width="56%" valign="top">
+<td width="58%" valign="top">
   <img src="./assets/terminal.svg" width="100%" alt="terminal card" />
 </td>
-<td width="44%" valign="top">
+<td width="42%" valign="top">
   <b>陆逸昊 · taboo-hacker</b>
   <p><i>「再次相遇 你我皆是路人」</i></p>
   <ul>
@@ -272,12 +272,24 @@
 
 ## 📫 联系我
 
-<p>
-  <a href="mailto:leo43991314520@163.com"><img src="https://img.shields.io/badge/Email-leo43991314520%40163.com-7C3AED?style=for-the-badge&logo=maildotru&logoColor=white&labelColor=0D1117" /></a>
-  <a href="https://www.leo43991314520.top"><img src="https://img.shields.io/badge/主站-www.leo43991314520.top-06B6D4?style=for-the-badge&logo=googlechrome&logoColor=white&labelColor=0D1117" /></a>
-  <a href="https://www.taboo.dpdns.org"><img src="https://img.shields.io/badge/完整版-www.taboo.dpdns.org-A855F7?style=for-the-badge&logo=cloudflare&logoColor=white&labelColor=0D1117" /></a>
-  <a href="https://git.leo43991314520.top"><img src="https://img.shields.io/badge/Forgejo-git.leo43991314520.top-FB923C?style=for-the-badge&logo=forgejo&logoColor=white&labelColor=0D1117" /></a>
-</p>
+<table>
+<tr>
+<td>
+  <a href="mailto:leo43991314520@163.com"><img src="https://img.shields.io/badge/Email-leo43991314520%40163.com-7C3AED?style=for-the-badge&logo=maildotru&logoColor=white&labelColor=0D1117" alt="email" /></a>
+</td>
+<td>
+  <a href="https://www.leo43991314520.top"><img src="https://img.shields.io/badge/%E4%B8%BB%E7%AB%99-www.leo43991314520.top-06B6D4?style=for-the-badge&logo=googlechrome&logoColor=white&labelColor=0D1117" alt="site" /></a>
+</td>
+</tr>
+<tr>
+<td>
+  <a href="https://www.taboo.dpdns.org"><img src="https://img.shields.io/badge/%E5%AE%8C%E6%95%B4%E7%89%88-www.taboo.dpdns.org-A855F7?style=for-the-badge&logo=cloudflare&logoColor=white&labelColor=0D1117" alt="full site" /></a>
+</td>
+<td>
+  <a href="https://git.leo43991314520.top"><img src="https://img.shields.io/badge/Forgejo-git.leo43991314520.top-FB923C?style=for-the-badge&logo=forgejo&logoColor=white&labelColor=0D1117" alt="forgejo" /></a>
+</td>
+</tr>
+</table>
 
 > 欢迎在我的任意仓库提 Issue 交流，也欢迎来我的自建 Git 服务逛逛。
 
