@@ -1,0 +1,79 @@
+name: Refresh Profile Assets
+
+# 自动刷新 README 里那些「会动的东西」：
+#   🐍 贪吃蛇贡献图 · 📊 统计卡片 · 🏙️ 3D 贡献城市
+on:
+  workflow_dispatch:
+  schedule:
+    # 每天 02:20 (UTC+8)
+    - cron: "20 18 * * *"
+  push:
+    branches: [main]
+    paths:
+      - "README.md"
+      - ".github/workflows/profile-assets.yml"
+
+concurrency:
+  group: profile-assets
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    # 避免自己提交自己触发死循环
+    if: github.event_name != 'push' || github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - name: Prepare directories
+        run: mkdir -p assets
+
+      - name: Generate stats card
+        uses: stats-organization/github-readme-stats-action@v1
+        with:
+          card: stats
+          options: username=taboo-hacker&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=22D3EE&icon_color=A855F7&text_color=CBD5E1&ring_color=7C3AED&count_private=true&include_all_commits=true&rank_icon=percentile
+          path: assets/stats.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate top languages card
+        uses: stats-organization/github-readme-stats-action@v1
+        with:
+          card: top-langs
+          options: username=taboo-hacker&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=22D3EE&text_color=CBD5E1&layout=donut&langs_count=8&size_weight=0.5&count_weight=0.5&exclude_repo=taboo-hacker
+          path: assets/top-langs.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate contribution snake
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            assets/snake.svg?palette=github-dark&color_snake=#7C3AED&color_dots=#161B22,#312E81,#4C1D95,#7C3AED,#22D3EE
+            assets/snake-light.svg?palette=github-light&color_snake=#7C3AED
+
+      - name: Generate 3D contribution graph
+        uses: yoshi389111/github-profile-3d-contrib@v0.9.3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USERNAME: ${{ github.repository_owner }}
+
+      - name: Commit generated assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets profile-3d-contrib
+          if git diff --cached --quiet; then
+            echo "No asset changes, nothing to commit."
+            exit 0
+          fi
+          git commit -m "chore: refresh profile assets [skip ci]"
+          git push origin HEAD:main
