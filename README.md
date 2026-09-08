@@ -8,14 +8,14 @@
 
 <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0B1120,35:4C1D95,70:7C3AED,100:06B6D4&height=230&section=header&text=TABOO&fontSize=76&fontColor=ffffff&fontAlignY=34&animation=twinkling&desc=%E9%99%86%E9%80%B8%E6%98%8A%20%C2%B7%20AI%20%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E8%80%85&descAlignY=58&descSize=18" alt="TABOO" />
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=900&color=22D3EE&center=true&vCenter=true&width=800&height=52&lines=AI%20%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E8%80%85%20%C2%B7%20%E7%94%A8%E4%BB%A3%E7%A0%81%E8%A7%A3%E5%86%B3%E8%BA%AB%E8%BE%B9%E7%9C%9F%E5%AE%9E%E7%9A%84%E7%97%9B%E7%82%B9;Full-Stack%20%C2%B7%20Vue%203%20%2B%20FastAPI%20%2B%20Go%20%2B%20Docker;%E8%A1%A2%E5%B7%9E%E8%81%8C%E4%B8%9A%E6%8A%80%E6%9C%AF%E5%AD%A6%E9%99%A2%20%C2%B7%20%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8;AI%20%E4%B8%8D%E6%98%AF%E6%9B%BF%E4%BB%A3%E6%80%9D%E8%80%83%EF%BC%8C%E8%80%8C%E6%98%AF%E6%94%BE%E5%A4%A7%E5%88%9B%E9%80%A0" alt="typing" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=900&color=22D3EE&center=true&vCenter=true&width=800&height=52&lines=AI%20%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E8%80%85%20%C2%B7%20%E7%94%A8%E4%BB%A3%E7%A0%81%E8%A7%A3%E5%86%B3%E8%BA%AB%E8%BE%B9%E7%9C%9F%E5%AE%9E%E7%9A%84%E7%97%9B%E7%82%B9;%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91%20%C2%B7%20Vue%203%20%2B%20FastAPI%20%2B%20Go%20%2B%20Docker;%E8%A1%A2%E5%B7%9E%E8%81%8C%E4%B8%9A%E6%8A%80%E6%9C%AF%E5%AD%A6%E9%99%A2%20%C2%B7%20%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8;AI%20%E4%B8%8D%E6%98%AF%E6%9B%BF%E4%BB%A3%E6%80%9D%E8%80%83%EF%BC%8C%E8%80%8C%E6%98%AF%E6%94%BE%E5%A4%A7%E5%88%9B%E9%80%A0" alt="typing" />
 
 <br/>
 
-<img src="https://komarev.com/ghpvc/?username=taboo-hacker&label=PROFILE+VIEWS&style=for-the-badge&color=7C3AED" alt="views" />
-<img src="https://img.shields.io/github/followers/taboo-hacker?style=for-the-badge&logo=github&color=06B6D4&labelColor=0D1117" alt="followers" />
-<img src="https://img.shields.io/badge/Focus-AI%20%2F%20Full--Stack-7C3AED?style=for-the-badge&logo=openai&logoColor=white&labelColor=0D1117" alt="focus" />
-<img src="https://img.shields.io/badge/Status-Building-22C55E?style=for-the-badge&logo=statuspage&logoColor=white&labelColor=0D1117" alt="status" />
+<img src="https://komarev.com/ghpvc/?username=taboo-hacker&label=%E8%AE%BF%E9%97%AE%E9%87%8F&style=for-the-badge&color=7C3AED" alt="访问量" />
+<img src="https://img.shields.io/github/followers/taboo-hacker?style=for-the-badge&logo=github&color=06B6D4&labelColor=0D1117&label=%E5%85%B3%E6%B3%A8%E8%80%85" alt="关注者" />
+<img src="https://img.shields.io/badge/%E4%B8%93%E6%B3%A8-AI%20%E5%BA%94%E7%94%A8%20%2F%20%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91-7C3AED?style=for-the-badge&logo=openai&logoColor=white&labelColor=0D1117" alt="专注" />
+<img src="https://img.shields.io/badge/%E7%8A%B6%E6%80%81-%E6%8C%81%E7%BB%AD%E8%BF%AD%E4%BB%A3%E4%B8%AD-22C55E?style=for-the-badge&logo=statuspage&logoColor=white&labelColor=0D1117" alt="状态" />
 
 </div>
 
@@ -48,30 +48,23 @@
 ## 📊 GitHub 数据
 
 <p align="center">
-  <img src="./assets/stats.svg" height="190" alt="GitHub stats" />
-  <img src="./assets/top-langs.svg" height="190" alt="Top languages" />
+  <img src="./assets/stats.svg" height="180" alt="GitHub 数据总览" />
+  <img src="./assets/top-langs.svg" height="180" alt="用得最多的编程语言" />
 </p>
 
 <p align="center">
-  <img src="https://streak-stats.demolab.com?user=taboo-hacker&theme=tokyonight&hide_border=true&background=0D1117&ring=7C3AED&fire=22D3EE&currStreakLabel=22D3EE&sideLabels=CBD5E1&dates=64748B&border_radius=12" height="170" alt="streak" />
+  <img src="https://streak-stats.demolab.com?user=taboo-hacker&locale=zh&theme=tokyonight&hide_border=true&background=0D1117&ring=7C3AED&fire=22D3EE&currStreakLabel=22D3EE&sideLabels=CBD5E1&dates=64748B&border_radius=12" height="170" alt="贡献连续天数" />
 </p>
 
-## 🐍 贪吃蛇正在吃我的贡献图
+## GitHub 贡献图
 
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="./assets/snake.svg" />
     <source media="(prefers-color-scheme: light)" srcset="./assets/snake-light.svg" />
-    <img src="./assets/snake.svg" width="100%" alt="contribution snake" />
+    <img src="./assets/snake.svg" width="100%" alt="贡献图贪吃蛇" />
   </picture>
-  <br/>
-  <sub>每吃一格，都是一次真实的提交 · 每天 02:20 自动重绘</sub>
-</p>
-
-## 🏙️ 3D 贡献城市
-
-<p align="center">
-  <img src="./profile-3d-contrib/profile-night-view.svg" width="100%" alt="3D contributions" />
+  <img src="./profile-3d-contrib/profile-night-view.svg" width="100%" alt="3D 贡献图" />
 </p>
 
 <img src="./assets/divider.svg" width="100%" alt="" />

@@ -44,13 +44,12 @@ jobs:
           USERNAME: ${{ github.repository_owner }}
         run: python3 tools/make_stats_svg.py
 
-      - name: Generate top languages card
-        uses: stats-organization/github-readme-stats-action@v1
-        with:
-          card: top-langs
-          options: username=taboo-hacker&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=22D3EE&text_color=CBD5E1&layout=donut&langs_count=8&size_weight=0.5&count_weight=0.5&exclude_repo=taboo-hacker
-          path: assets/top-langs.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Generate top languages card (custom, REST-only)
+        # 同样自己画：第三方卡片的标题写死 "Most Used Languages"，改不动
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USERNAME: ${{ github.repository_owner }}
+        run: python3 tools/make_langs_svg.py
 
       - name: Generate contribution snake
         uses: Platane/snk/svg-only@v3

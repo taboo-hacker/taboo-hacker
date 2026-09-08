@@ -142,7 +142,7 @@ for i, color in enumerate(("#F87171", "#FBBF24", "#34D399")):
     parts.append(f'<circle cx="{30 + i*22}" cy="25" r="5.5" fill="{color}" opacity="0.9"/>')
 parts.append(
     f'<text x="{PANEL_W/2}" y="30" text-anchor="middle" font-family="{FONT}" '
-    f'font-size="12.5" fill="#64748B">taboo@github — zsh — 80x24</text>'
+    f'font-size="12.5" fill="#64748B">陆逸昊 · ~/profile</text>'
 )
 
 # 每一行
@@ -186,7 +186,7 @@ parts.append(
 )
 parts.append(
     f'<text x="{PANEL_W-48}" y="{PANEL_H-20}" text-anchor="end" font-family="{FONT}" '
-    f'font-size="11.5" fill="#334155">online</text>'
+    f'font-size="11.5" fill="#334155">在线</text>'
 )
 
 parts.append("</svg>")

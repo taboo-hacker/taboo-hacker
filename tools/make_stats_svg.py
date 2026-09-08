@@ -88,11 +88,11 @@ def fmt(v):
 
 STATS = [
     (fmt(len(repos)), "公开仓库"),
-    (fmt(total_stars), "获得 Star"),
+    (fmt(total_stars), "获得星标"),
     (fmt(total_commits), "公开提交"),
-    (fmt(prs), "Pull Requests"),
-    (fmt(issues), "Issues"),
-    (fmt(user.get("followers")), "Followers"),
+    (fmt(prs), "拉取请求"),
+    (fmt(issues), "议题"),
+    (fmt(user.get("followers")), "关注者"),
 ]
 
 updated = (datetime.now(timezone.utc) + timedelta(hours=8)).strftime("%Y-%m-%d %H:%M (UTC+8)")
