@@ -1,0 +1,25 @@
+{
+  "type": "normal",
+  "fileName": "profile-night-cn.svg",
+  "backgroundColor": "#0A0A0D",
+  "foregroundColor": "#F5EFE6",
+  "strongColor": "#E8B04B",
+  "weakColor": "#8A8F98",
+  "radarColor": "#E8B04B",
+  "contribColors": [
+    "#1A1416",
+    "#5C2A1C",
+    "#9C3A22",
+    "#D9482F",
+    "#E8B04B"
+  ],
+  "growingAnimation": true,
+  "l10n": {
+    "commit": "提交",
+    "repo": "仓库",
+    "review": "审查",
+    "pullreq": "拉取请求",
+    "issue": "议题",
+    "contrib": "次贡献"
+  }
+}
