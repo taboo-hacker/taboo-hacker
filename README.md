@@ -6,7 +6,7 @@
 
 <div align="center">
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0B1120,35:4C1D95,70:7C3AED,100:06B6D4&height=230&section=header&text=TABOO&fontSize=76&fontColor=ffffff&fontAlignY=34&animation=twinkling&desc=%E9%99%86%E9%80%B8%E6%98%8A%20%C2%B7%20AI%20%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E8%80%85&descAlignY=58&descSize=18" alt="TABOO" />
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0B1120,35:4C1D95,70:7C3AED,100:06B6D4&height=230&section=header&text=taboo-hacker&fontSize=76&fontColor=ffffff&fontAlignY=34&animation=twinkling&desc=%E9%99%86%E9%80%B8%E6%98%8A%20%C2%B7%20AI%20%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E8%80%85&descAlignY=58&descSize=18" alt="taboo-hacker" />
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=900&color=22D3EE&center=true&vCenter=true&width=800&height=52&lines=AI%20%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E8%80%85%20%C2%B7%20%E7%94%A8%E4%BB%A3%E7%A0%81%E8%A7%A3%E5%86%B3%E8%BA%AB%E8%BE%B9%E7%9C%9F%E5%AE%9E%E7%9A%84%E7%97%9B%E7%82%B9;%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91%20%C2%B7%20Vue%203%20%2B%20FastAPI%20%2B%20Go%20%2B%20Docker;%E8%A1%A2%E5%B7%9E%E8%81%8C%E4%B8%9A%E6%8A%80%E6%9C%AF%E5%AD%A6%E9%99%A2%20%C2%B7%20%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8;AI%20%E4%B8%8D%E6%98%AF%E6%9B%BF%E4%BB%A3%E6%80%9D%E8%80%83%EF%BC%8C%E8%80%8C%E6%98%AF%E6%94%BE%E5%A4%A7%E5%88%9B%E9%80%A0" alt="typing" />
 
