@@ -65,7 +65,7 @@ LINES = [
     ("out", [("}", C["punc"])]),
     ("cmd", 'git commit -m "keep going"'),
     ("out", [("[main 7c3aed] ", C["dim"]), ("保持热爱，持续交付", C["ok"])]),
-    ("out", [("$ ", C["prompt"]), ("\u2588", C["ok"])]),
+    ("cmd", "clear"),      # 敲 clear 把屏幕清空，循环重开时更顺滑
 ]
 
 
@@ -94,11 +94,12 @@ PROMPT_PAUSE = 0.65    # 提示符出现后，隔多久开始敲命令
 CMD_GAP = 0.30         # 命令敲完后，隔多久出输出
 READ_BASE = 0.70       # 输出出现后的基础停留
 READ_PER_LINE = 0.22   # 每多一行输出，多停一会儿
-HOLD = 4.0             # 全部结束后的停留
+CLEAR_PAUSE = 0.45     # 敲完 clear 之后，隔多久屏幕清空
+CLEAR_HOLD = 0.90      # 清空后留一段空白再重开循环
 MIN_DUR = 0.35
 
 timeline = []          # 与 LINES 一一对应
-t_prompt = 0.6         # 当前这行提示符出现的时刻
+t_prompt = 0.05        # 第一行提示符：一开场就在（不然开场是空的）
 wait = PROMPT_PAUSE    # 提示符出现后等多久开始敲（输出越长，等得越久，方便看完）
 t_end = t_prompt
 i = 0
@@ -132,11 +133,17 @@ while i < len(LINES):
         timeline.append({"kind": "out", "t0": t_prompt, "segs": LINES[i][1]})
         t_end = t_prompt
         i += 1
-DUR = round(t_end + HOLD, 2)
+
+# clear 敲完之后，整屏（包括 clear 这一行）一起消失
+T_CLEAR = t_end + CLEAR_PAUSE
+DUR = round(T_CLEAR + CLEAR_HOLD, 2)
 
 
 def frac(sec: float) -> float:
     return round(sec / DUR, 4)
+
+
+K_CLEAR = frac(T_CLEAR)
 
 
 parts = []
@@ -197,10 +204,10 @@ parts.append(
 
 
 def gate(shown, kp: float) -> str:
-    """输出 / 提示符的「瞬间出现」开关。shown=None 表示生成动画。"""
+    """整行可见性开关：从 kp 时刻亮起，到 clear 那一刻一起灭。shown=None 表示生成动画。"""
     if shown is None:
         return (
-            f'<animate attributeName="opacity" values="0;1;1" keyTimes="0;{kp};1" '
+            f'<animate attributeName="opacity" values="0;1;1;0" keyTimes="0;{kp};{K_CLEAR};1" '
             f'dur="{DUR}s" repeatCount="indefinite" calcMode="discrete"/>'
         )
     return ""
@@ -217,19 +224,22 @@ for idx, item in enumerate(timeline):
         kp, k0, k1 = frac(t_prompt), frac(t_type0), frac(t_type1)
         wclip = cmd_w + 4
 
-        # --- 提示符：敲命令之前就已经在那一行了 ---
-        if STATIC or (STATIC_AT is not None and STATIC_AT >= t_prompt):
-            prompt_shown = True
+        # 整行（提示符 + 命令 + 光标）共用一个可见性开关：
+        # 从提示符出现那一刻亮起，到 clear 那一刻整屏一起消失。
+        if STATIC:
+            line_shown = True
         elif STATIC_AT is not None:
-            prompt_shown = False
+            line_shown = t_prompt <= STATIC_AT < T_CLEAR
         else:
-            prompt_shown = None
-        parts.append(f'<g opacity="{1 if prompt_shown else 0}">')
-        parts.append(gate(prompt_shown, kp))
+            line_shown = None
+        parts.append(f'<g opacity="{1 if line_shown else 0}">')
+        parts.append(gate(line_shown, kp))
+
+        # --- 提示符：敲命令之前就已经在那一行了 ---
         parts.append(
             f'<text x="{LEFT}" y="{y}" font-family="{FONT}" font-size="{FS}" xml:space="preserve" '
             f'textLength="{PROMPT_W:.1f}" lengthAdjust="spacing">'
-            f'<tspan fill="{C["prompt"]}">{esc(PROMPT)}</tspan></text></g>'
+            f'<tspan fill="{C["prompt"]}">{esc(PROMPT)}</tspan></text>'
         )
 
         # --- 命令：逐字敲出来 ---
@@ -289,14 +299,16 @@ for idx, item in enumerate(timeline):
                 f'rx="1.5" fill="{C["ok"]}"/>'
             )
 
+        parts.append("</g>")
+
     else:
-        # --- 输出：整块瞬间出现 ---
+        # --- 输出：整块瞬间出现，clear 时一起消失 ---
         segs, t0 = item["segs"], item["t0"]
         k0 = frac(t0)
-        if STATIC or (STATIC_AT is not None and STATIC_AT >= t0):
+        if STATIC:
             shown = True
         elif STATIC_AT is not None:
-            shown = False
+            shown = t0 <= STATIC_AT < T_CLEAR
         else:
             shown = None
         parts.append(f'<g opacity="{1 if shown else 0}">')
