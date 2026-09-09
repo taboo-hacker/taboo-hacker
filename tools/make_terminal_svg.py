@@ -94,22 +94,25 @@ PROMPT_PAUSE = 0.65    # 提示符出现后，隔多久开始敲命令
 CMD_GAP = 0.30         # 命令敲完后，隔多久出输出
 READ_BASE = 0.70       # 输出出现后的基础停留
 READ_PER_LINE = 0.22   # 每多一行输出，多停一会儿
-CLEAR_PAUSE = 0.45     # 敲完 clear 之后，隔多久屏幕清空
-CLEAR_HOLD = 0.90      # 清空后留一段空白再重开循环
+FINAL_PAUSE = 1.80     # 敲最后那条 clear 之前，多停一会儿（让结尾看得清）
+ENTER_BLINK = 0.75     # clear 打完字后光标继续闪多久 —— 闪完才代表「回车」
+CLEAR_TAIL = 0.15      # 清屏后到循环重开的间隔（几乎立刻重开）
 MIN_DUR = 0.35
 
 timeline = []          # 与 LINES 一一对应
 t_prompt = 0.05        # 第一行提示符：一开场就在（不然开场是空的）
 wait = PROMPT_PAUSE    # 提示符出现后等多久开始敲（输出越长，等得越久，方便看完）
 t_end = t_prompt
+last_cmd_type1 = None
 i = 0
 while i < len(LINES):
     kind = LINES[i][0]
     if kind == "cmd":
         cmd = LINES[i][1]
+        is_final = i == len(LINES) - 1          # 最后一条 = clear
         cmd_w = text_width(cmd)
         dur = max(MIN_DUR, cmd_w / SPEED)
-        t_type0 = t_prompt + wait
+        t_type0 = t_prompt + (FINAL_PAUSE if is_final else wait)
         t_type1 = t_type0 + dur
         timeline.append({
             "kind": "cmd",
@@ -117,7 +120,9 @@ while i < len(LINES):
             "t_type0": t_type0,
             "t_type1": t_type1,
             "cmd_w": cmd_w,
+            "final": is_final,
         })
+        last_cmd_type1 = t_type1
         appear = t_type1 + CMD_GAP      # 输出出现的时刻
         i += 1
         n = 0
@@ -134,9 +139,9 @@ while i < len(LINES):
         t_end = t_prompt
         i += 1
 
-# clear 敲完之后，整屏（包括 clear 这一行）一起消失
-T_CLEAR = t_end + CLEAR_PAUSE
-DUR = round(T_CLEAR + CLEAR_HOLD, 2)
+# clear 打完字后，光标继续闪 ENTER_BLINK 秒（还没回车）；闪完 = 回车 = 立刻清屏重开
+T_CLEAR = (last_cmd_type1 + ENTER_BLINK) if LINES[-1][0] == "cmd" else (t_end + 0.45)
+DUR = round(T_CLEAR + CLEAR_TAIL, 2)
 
 
 def frac(sec: float) -> float:
@@ -298,6 +303,23 @@ for idx, item in enumerate(timeline):
                 f'<rect x="{cmd_x + cmd_w * prog:.1f}" y="{y-13}" width="8.5" height="17" '
                 f'rx="1.5" fill="{C["ok"]}"/>'
             )
+
+        # --- 最后一条命令（clear）：打完字光标继续闪 = 还没回车；闪完才清屏 ---
+        if item.get("final"):
+            if prog is None:
+                parts.append(
+                    f'<g opacity="0">'
+                    f'<animate attributeName="opacity" values="0;1;0" keyTimes="0;{k1};{K_CLEAR}" '
+                    f'dur="{DUR}s" repeatCount="indefinite" calcMode="discrete"/>'
+                    f'<rect x="{cmd_x + cmd_w:.1f}" y="{y-13}" width="8.5" height="17" rx="1.5" fill="{C["ok"]}">'
+                    f'<animate attributeName="opacity" values="1;0;1" dur="1.1s" repeatCount="indefinite"/>'
+                    f"</rect></g>"
+                )
+            elif STATIC_AT is not None and t_type1 <= STATIC_AT < T_CLEAR:
+                parts.append(
+                    f'<rect x="{cmd_x + cmd_w:.1f}" y="{y-13}" width="8.5" height="17" '
+                    f'rx="1.5" fill="{C["ok"]}"/>'
+                )
 
         parts.append("</g>")
 
