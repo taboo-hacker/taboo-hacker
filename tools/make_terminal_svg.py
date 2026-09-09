@@ -98,7 +98,9 @@ HOLD = 4.0             # 全部结束后的停留
 MIN_DUR = 0.35
 
 timeline = []          # 与 LINES 一一对应
-t = 0.6
+t_prompt = 0.6         # 当前这行提示符出现的时刻
+wait = PROMPT_PAUSE    # 提示符出现后等多久开始敲（输出越长，等得越久，方便看完）
+t_end = t_prompt
 i = 0
 while i < len(LINES):
     kind = LINES[i][0]
@@ -106,24 +108,31 @@ while i < len(LINES):
         cmd = LINES[i][1]
         cmd_w = text_width(cmd)
         dur = max(MIN_DUR, cmd_w / SPEED)
+        t_type0 = t_prompt + wait
+        t_type1 = t_type0 + dur
         timeline.append({
             "kind": "cmd",
-            "t_prompt": t,
-            "t_type0": t + PROMPT_PAUSE,
-            "t_type1": t + PROMPT_PAUSE + dur,
+            "t_prompt": t_prompt,
+            "t_type0": t_type0,
+            "t_type1": t_type1,
             "cmd_w": cmd_w,
         })
-        t += PROMPT_PAUSE + dur + CMD_GAP
+        appear = t_type1 + CMD_GAP      # 输出出现的时刻
         i += 1
-    else:
-        appear = t
         n = 0
         while i < len(LINES) and LINES[i][0] == "out":
             timeline.append({"kind": "out", "t0": appear, "segs": LINES[i][1]})
             n += 1
             i += 1
-        t += READ_BASE + READ_PER_LINE * n
-DUR = round(t + HOLD, 2)
+        # 关键：下一行的 `$ ` 和输出同时出现，光标在那儿等着，等你看完再敲下一条
+        t_prompt = appear
+        t_end = appear
+        wait = (READ_BASE + READ_PER_LINE * n) if n else PROMPT_PAUSE
+    else:
+        timeline.append({"kind": "out", "t0": t_prompt, "segs": LINES[i][1]})
+        t_end = t_prompt
+        i += 1
+DUR = round(t_end + HOLD, 2)
 
 
 def frac(sec: float) -> float:
