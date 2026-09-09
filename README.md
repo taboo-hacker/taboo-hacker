@@ -64,7 +64,7 @@
     <source media="(prefers-color-scheme: light)" srcset="./assets/snake-light.svg" />
     <img src="./assets/snake.svg" width="100%" alt="贡献图贪吃蛇" />
   </picture>
-  <img src="./profile-3d-contrib/profile-night-view.svg" width="100%" alt="3D 贡献图" />
+  <img src="./profile-3d-contrib/profile-night-cn.svg" width="100%" alt="3D 贡献图" />
 </p>
 
 <img src="./assets/divider.svg" width="100%" alt="" />

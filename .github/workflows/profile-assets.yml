@@ -59,17 +59,23 @@ jobs:
             assets/snake.svg?palette=github-dark&color_snake=#7C3AED&color_dots=#161B22,#312E81,#4C1D95,#7C3AED,#22D3EE
             assets/snake-light.svg?palette=github-light&color_snake=#7C3AED
 
-      - name: Generate 3D contribution graph
+      - name: Generate 3D contribution graph (中文标签)
+        # SETTING_JSON 里配了 l10n：雷达图五个维度 + 底部 "N contributions" 全部中文化
         uses: yoshi389111/github-profile-3d-contrib@v0.9.3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
+          SETTING_JSON: profile-3d-settings.json
+
+      - name: Drop the unused 3D themes
+        # 自定义设置只会产出 profile-night-cn.svg，其余主题文件不再生成，顺手清掉
+        run: find profile-3d-contrib -maxdepth 1 -name '*.svg' ! -name 'profile-night-cn.svg' -delete
 
       - name: Commit generated assets
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets profile-3d-contrib
+          git add -A assets profile-3d-contrib
           if git diff --cached --quiet; then
             echo "No asset changes, nothing to commit."
             exit 0
