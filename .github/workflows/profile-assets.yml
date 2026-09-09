@@ -22,8 +22,11 @@ permissions:
 
 jobs:
   refresh:
-    # 避免自己提交自己触发死循环
-    if: github.event_name != 'push' || github.actor != 'github-actions[bot]'
+    # 1) 只在 GitHub 上跑：本仓库会同步到自建 Forgejo，那边没有 GitHub 的 token / runner
+    # 2) 避免自己提交自己触发死循环
+    if: >-
+      github.server_url == 'https://github.com' &&
+      (github.event_name != 'push' || github.actor != 'github-actions[bot]')
     runs-on: ubuntu-latest
     timeout-minutes: 12
 
