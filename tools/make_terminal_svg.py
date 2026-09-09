@@ -52,7 +52,7 @@ LINES = [
     [('  "status"', C["key"]), (":  ", C["punc"]), ('"building · 持续迭代中"', C["str"])],
     [("}", C["punc"])],
     [("$ ", C["prompt"]), ('git commit -m "keep going"', C["cmd"])],
-    [("[main 7c3aed] ", C["dim"]), ("保持热爱，持续交付", C["ok"])],
+    [("[main 7c3aed] ", C["dim"]), ("保持热爱，持续交付", C["ok"]), ("\u2588", C["ok"])],
 ]
 
 
@@ -160,23 +160,22 @@ for idx, (segs, (t0, t1)) in enumerate(zip(LINES, timeline)):
     parts.append("</rect></clipPath>")
 
     parts.append(f'<g clip-path="url(#c{idx})">')
-    x = LEFT
+    # 只给 <text> 设起始 x，tspan 依次自然排版。
+    # 之前给每个 tspan 都算绝对 x，估算字宽和浏览器实际字宽（Consolas 0.55em vs 估算 0.6em）
+    # 有偏差，长行会累积出几格空隙 —— 现在交给浏览器排版，字体无关。
     parts.append(f'<text x="{LEFT}" y="{y}" font-family="{FONT}" font-size="{FS}" xml:space="preserve">')
-    for text, color in segs:
-        parts.append(f'<tspan x="{x:.1f}" fill="{color}">{esc(text)}</tspan>')
-        x += line_width([(text, color)])
+    last_line = idx == len(LINES) - 1
+    for j, (text, color) in enumerate(segs):
+        if last_line and j == len(segs) - 1 and not STATIC:
+            # 末尾的方块光标：跟着文字走，天然对齐，不用算字宽
+            parts.append(
+                f'<tspan fill="{color}">{esc(text)}'
+                f'<animate attributeName="opacity" values="1;0;1" dur="1.1s" repeatCount="indefinite"/>'
+                f"</tspan>"
+            )
+        else:
+            parts.append(f'<tspan fill="{color}">{esc(text)}</tspan>')
     parts.append("</text></g>")
-
-    # 跟随打字位置的块状光标
-    if not STATIC:
-        parts.append(
-            f'<rect y="{y-13}" width="8.5" height="17" rx="1.5" fill="#E8B04B">'
-            f'<animate attributeName="x" values="{LEFT};{LEFT};{LEFT+w:.1f};{LEFT+w:.1f}" '
-            f'keyTimes="0;{k0};{k1};1" dur="{DUR}s" repeatCount="indefinite"/>'
-            f'<animate attributeName="opacity" values="0;1;0" keyTimes="0;{k0};{k1}" '
-            f'dur="{DUR}s" repeatCount="indefinite" calcMode="discrete"/>'
-            f"</rect>"
-        )
 
 # 底部呼吸光点
 parts.append(
