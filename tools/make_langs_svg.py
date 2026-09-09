@@ -41,7 +41,7 @@ COLORS = {
     "Objective-C": "#438EFF", "Vim Script": "#199F4B", "EJS": "#A91E50",
     "Handlebars": "#F7931E", "Svelte": "#FF3E00", "Roff": "#ECDEBE",
 }
-FALLBACK = ["#7C3AED", "#22D3EE", "#A855F7", "#06B6D4", "#8B5CF6", "#0EA5E9"]
+FALLBACK = ["#D9482F", "#E8B04B", "#F0664A", "#B3472F", "#C98A2F", "#8C3A1E"]
 
 
 def gh(path: str):
@@ -89,21 +89,21 @@ p = [
     f'role="img" aria-label="用得最多的编程语言">',
     "<defs>",
     '<linearGradient id="line" x1="0" y1="0" x2="1" y2="0">'
-    '<stop offset="0" stop-color="#22D3EE"/><stop offset="1" stop-color="#7C3AED"/></linearGradient>',
+    '<stop offset="0" stop-color="#D9482F"/><stop offset="1" stop-color="#E8B04B"/></linearGradient>',
     '<linearGradient id="sweep" x1="0" y1="0" x2="1" y2="0">'
-    '<stop offset="0" stop-color="#22D3EE" stop-opacity="0"/>'
-    '<stop offset="0.5" stop-color="#22D3EE" stop-opacity="0.6"/>'
-    '<stop offset="1" stop-color="#22D3EE" stop-opacity="0"/></linearGradient>',
+    '<stop offset="0" stop-color="#E8B04B" stop-opacity="0"/>'
+    '<stop offset="0.5" stop-color="#E8B04B" stop-opacity="0.6"/>'
+    '<stop offset="1" stop-color="#E8B04B" stop-opacity="0"/></linearGradient>',
     "</defs>",
-    f'<rect x="0.5" y="0.5" width="{W-1}" height="{H-1}" rx="14" fill="#0D1117" stroke="#1E293B"/>',
+    f'<rect x="0.5" y="0.5" width="{W-1}" height="{H-1}" rx="14" fill="#0A0A0D" stroke="#2A1F1F"/>',
     f'<rect x="{PAD}" y="1" width="{W-PAD*2}" height="2" rx="1" fill="url(#line)" opacity="0.85"/>',
     f'<rect x="-140" y="1" width="140" height="2.5" fill="url(#sweep)">'
     f'<animate attributeName="x" values="-140;{W}" dur="6s" repeatCount="indefinite"/></rect>',
-    f'<text x="{PAD}" y="36" font-family="{FONT}" font-size="16" font-weight="700" fill="#22D3EE">'
+    f'<text x="{PAD}" y="36" font-family="{FONT}" font-size="16" font-weight="700" fill="#E8B04B">'
     f'用得最多的编程语言</text>',
-    f'<text x="{W-PAD}" y="36" text-anchor="end" font-family="{FONT}" font-size="12" fill="#64748B">'
+    f'<text x="{W-PAD}" y="36" text-anchor="end" font-family="{FONT}" font-size="12" fill="#8A8F98">'
     f'@{USER}</text>',
-    f'<line x1="{PAD}" y1="50" x2="{W-PAD}" y2="50" stroke="#1E293B"/>',
+    f'<line x1="{PAD}" y1="50" x2="{W-PAD}" y2="50" stroke="#2A1F1F"/>',
 ]
 
 BAR_X, BAR_W = 140, 190
@@ -118,15 +118,15 @@ for i, (lang, n) in enumerate(top):
     filled = max(6.0, BAR_W * (n / max_share))
     p += [
         f'<circle cx="{PAD + 4}" cy="{y - 4}" r="4" fill="{color}"/>',
-        f'<text x="{PAD + 14}" y="{y}" font-family="{FONT}" font-size="12" fill="#CBD5E1">{lang}</text>',
-        f'<rect x="{BAR_X}" y="{y - 9.5}" width="{BAR_W}" height="7" rx="3.5" fill="#161B22"/>',
+        f'<text x="{PAD + 14}" y="{y}" font-family="{FONT}" font-size="12" fill="#F5EFE6">{lang}</text>',
+        f'<rect x="{BAR_X}" y="{y - 9.5}" width="{BAR_W}" height="7" rx="3.5" fill="#1A1416"/>',
         f'<rect x="{BAR_X}" y="{y - 9.5}" width="{filled:.1f}" height="7" rx="3.5" fill="{color}"/>',
         f'<text x="{W - PAD}" y="{y}" text-anchor="end" font-family="{FONT}" font-size="11.5" '
-        f'fill="#94A3B8">{share:.1f}%</text>',
+        f'fill="#8A8F98">{share:.1f}%</text>',
     ]
 
 p.append(
-    f'<text x="{PAD}" y="{H-12}" font-family="{FONT}" font-size="10" fill="#475569">'
+    f'<text x="{PAD}" y="{H-12}" font-family="{FONT}" font-size="10" fill="#5A5F66">'
     f'统计 {len(repos)} 个仓库 · 按代码字节数计算 · 更新于 {updated}</text>'
 )
 p.append("</svg>")

@@ -56,8 +56,8 @@ jobs:
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
-            assets/snake.svg?palette=github-dark&color_snake=#7C3AED&color_dots=#161B22,#312E81,#4C1D95,#7C3AED,#22D3EE
-            assets/snake-light.svg?palette=github-light&color_snake=#7C3AED
+            assets/snake.svg?palette=github-dark&color_snake=#E8B04B&color_dots=#1A1416,#4A2318,#8C3A1E,#C9482F,#E8B04B
+            assets/snake-light.svg?palette=github-light&color_snake=#D9482F
 
       - name: Generate 3D contribution graph (中文标签)
         # SETTING_JSON 里配了 l10n：雷达图五个维度 + 底部 "N contributions" 全部中文化

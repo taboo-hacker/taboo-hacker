@@ -1,17 +1,17 @@
 {
   "type": "normal",
   "fileName": "profile-night-cn.svg",
-  "backgroundColor": "#00000f",
-  "foregroundColor": "#eeeeff",
-  "strongColor": "rgb(255,200,55)",
-  "weakColor": "#aaaaaa",
-  "radarColor": "rgb(255,200,55)",
+  "backgroundColor": "#0A0A0D",
+  "foregroundColor": "#F5EFE6",
+  "strongColor": "#E8B04B",
+  "weakColor": "#8A8F98",
+  "radarColor": "#E8B04B",
   "contribColors": [
-    "rgb(25,60,130)",
-    "rgb(25,90,210)",
-    "rgb(25,120,220)",
-    "rgb(25,150,230)",
-    "rgb(25,165,240)"
+    "#1A1416",
+    "#5C2A1C",
+    "#9C3A22",
+    "#D9482F",
+    "#E8B04B"
   ],
   "growingAnimation": true,
   "l10n": {
