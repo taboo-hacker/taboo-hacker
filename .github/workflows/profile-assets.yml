@@ -12,6 +12,7 @@ on:
     paths:
       - "README.md"
       - ".github/workflows/profile-assets.yml"
+      - "tools/make_banner_svg.py"
 
 concurrency:
   group: profile-assets
@@ -38,6 +39,9 @@ jobs:
 
       - name: Prepare directories
         run: mkdir -p assets
+
+      - name: Generate profile banners
+        run: python3 tools/make_banner_svg.py
 
       - name: Generate stats card (custom, REST-only)
         # 不用 github-readme-stats：Actions 里的安装令牌读不到用户级 GraphQL 数据，
